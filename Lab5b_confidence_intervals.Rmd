@@ -2,7 +2,6 @@
 title: 'Foundations for statistical inference - Confidence intervals'
 author: "John Cruz"
 output:
-  pdf_document: default
   html_document:
     includes:
       in_header: header.html
@@ -11,6 +10,7 @@ output:
     theme: cerulean
     toc: true
     toc_float: true
+  pdf_document: default
 editor_options: 
   chunk_output_type: console
   markdown: 
@@ -473,17 +473,21 @@ samp %>%
 ```
 
 The bounds of the interval is (0.583, 0.7). Running the app, we have a
-proportion of (31/50) that captures the true population proportion
+proportion of 62% (31/50) that captures the true population proportion.
 
 ![](images/image-1818556881.png)
 
 4.  Using the app, experiment with different sample sizes and comment on
     how the widths of intervals change as sample size changes (increases
     and decreases).
+    
+As the sample size gets larger, the smaller the intervals become. 
 
 5.  Finally, given a sample size (say, 60), how does the width of the
     interval change as you increase the number of bootstrap samples.
     **Hint:** Does changing the number of bootstrap samples affect the
     standard error?
+    
+The more bootstrap samples you take, the closer you get to reducing the standard error and closer to the population proportion
 
 ------------------------------------------------------------------------
