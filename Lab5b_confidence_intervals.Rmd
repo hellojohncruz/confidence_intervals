@@ -234,7 +234,7 @@ reported as result of this pipeline.
 1.  In the interpretation above, we used the phrase "95% confident".
     What does "95% confidence" mean?
 
-95% confidence means that on average, 95% of the confidence intervals
+95% confidence means that on average, we are 95% confident the confidence intervals
 would capture the population proportion.
 
 In this case, you have the rare luxury of knowing the true population
@@ -390,8 +390,7 @@ shinyApp(
     confidence level? If not, explain why. Make sure to include your
     plot in your answer.
 
-92% (46/50) of the confidence intervals include the population
-proportion.
+92% (46/50) of the confidence intervals include the population proportion. The proportion is not exactly equal to the confidence level. This is because we expect the proportion to be *about* 95% but it does not have to be due to random chance of the sampling. However, if the proportion was drastically different, such as 80%, that would be more concerning as the proportion falls further out than the expected proportion value. 
 
 ![](images/image-1543735397.png){width="596"}
 
@@ -403,18 +402,40 @@ proportion.
     confidence interval at this level to me wider or narrower than the
     confidence interval you calculated at the 95% confidence level?
     Explain your reasoning.
+    
+Choosing a confidence level of 99%, higher than our previous 95%, I would anticipate the confidence interval to be wider. This is because as the spread of the values from the mean become wider, so does the interval as it is accounting for the larger values. We can verify this running a confidence level of 99%. We see that the range for 99% is (0.5, 0.783) as opposed to 95% (0.583, 0.717)
+    
+```{r confidence-99}    
+samp %>%
+  specify(response = climate_change_affects, success = "Yes") %>%
+  generate(reps = 1000, type = "bootstrap") %>%
+  calculate(stat = "prop") %>%
+  get_ci(level = 0.99)
+```
 
-2.  Using code from the **infer** package and data fromt the one sample
+2.  Using code from the **infer** package and data from the one sample
     you have (`samp`), find a confidence interval for the proportion of
     US Adults who think climate change is affecting their local
     community with a confidence level of your choosing (other than 95%)
     and interpret it.
+    
+On average, we are 90 % confident the population proportion lies between the confidence interval of (0.55, 0.75)
+    
+```{r confidence-90}    
+samp %>%
+  specify(response = climate_change_affects, success = "Yes") %>%
+  generate(reps = 1000, type = "bootstrap") %>%
+  calculate(stat = "prop") %>%
+  get_ci(level = 0.90)
+```
 
 3.  Using the app, calculate 50 confidence intervals at the confidence
     level you chose in the previous question, and plot all intervals on
     one plot, and calculate the proportion of intervals that include the
     true population proportion. How does this percentage compare to the
     confidence level selected for the intervals?
+    
+
 
 4.  Lastly, try one more (different) confidence level. First, state how
     you expect the width of this interval to compare to previous ones
