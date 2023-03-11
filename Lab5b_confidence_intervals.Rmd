@@ -394,7 +394,7 @@ shinyApp(
 proportion. The proportion is not exactly equal to the confidence level.
 This is because we expect the proportion to be *about* 95% but it does
 not have to be due to random chance of the sampling. However, if the
-proportion was drastically different, such as 80%, that would be more
+proportion was drastically different, such as 70%, that would be more
 concerning as the proportion falls further out than the expected
 proportion value.
 
@@ -446,8 +446,11 @@ samp %>%
     one plot, and calculate the proportion of intervals that include the
     true population proportion. How does this percentage compare to the
     confidence level selected for the intervals?
-    
-41/50
+
+82% (41/50) of the confidence intervals include the true population
+proportion. 82% is lower than the used 90% confidence level, however, it
+is not drastically different from it. Because of random probability, it
+is possible to get less than what would be expected on average.
 
 ![](images/image-1834794740.png)
 
@@ -456,7 +459,23 @@ samp %>%
     you calculated. Then, calculate the bounds of the interval using the
     **infer** package and data from `samp` and interpret it. Finally,
     use the app to generate many intervals and calculate the proportion
-    of intervals that are capture the true population proportion.
+    of intervals that capture the true population proportion.
+
+For a 68% confidence level, I would expect the confidence interval width
+to be narrower compared to previous ones.
+
+```{r confidence-68}
+samp %>%
+  specify(response = climate_change_affects, success = "Yes") %>%
+  generate(reps = 1000, type = "bootstrap") %>%
+  calculate(stat = "prop") %>%
+  get_ci(level = 0.68)
+```
+
+The bounds of the interval is (0.583, 0.7). Running the app, we have a
+proportion of (31/50) that captures the true population proportion
+
+![](images/image-1818556881.png)
 
 4.  Using the app, experiment with different sample sizes and comment on
     how the widths of intervals change as sample size changes (increases
