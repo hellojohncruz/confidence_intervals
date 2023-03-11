@@ -234,7 +234,7 @@ reported as result of this pipeline.
 1.  In the interpretation above, we used the phrase "95% confident".
     What does "95% confidence" mean?
 
-95% confidence means that on average, we are 95% confident the confidence intervals
+95% confidence means that on average, 95% of the time the confidence intervals
 would capture the population proportion.
 
 In this case, you have the rare luxury of knowing the true population
@@ -403,7 +403,7 @@ shinyApp(
     confidence interval you calculated at the 95% confidence level?
     Explain your reasoning.
     
-Choosing a confidence level of 99%, higher than our previous 95%, I would anticipate the confidence interval to be wider. This is because as the spread of the values from the mean become wider, so does the interval as it is accounting for the larger values. We can verify this running a confidence level of 99%. We see that the range for 99% is (0.5, 0.783) as opposed to 95% (0.583, 0.717)
+Choosing a confidence level of 99%, higher than our previous 95%, I would anticipate the confidence interval to be wider. This is because as the spread of the values from the mean become wider, so does the interval as it is accounting for the larger values. We can verify this running a confidence level of 99%. We see that the range for 99% is (0.5, 0.8) as opposed to 95% (0.533, 0.767)
     
 ```{r confidence-99}    
 samp %>%
@@ -419,7 +419,7 @@ samp %>%
     community with a confidence level of your choosing (other than 95%)
     and interpret it.
     
-On average, we are 90 % confident the population proportion lies between the confidence interval of (0.55, 0.75)
+On average, we are 90 % confident the population proportion lies between the confidence interval of (0.566, 0.75)
     
 ```{r confidence-90}    
 samp %>%
